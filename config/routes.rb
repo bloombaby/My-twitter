@@ -1,12 +1,8 @@
 Rails.application.routes.draw do
-  get 'tweets/index'
-
-  get 'tweets/new'
-
-  get 'tweets/show'
-
-  get 'tweets/edit'
+  resources :tweets
 
   devise_for :users
+
+  root 'tweets#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
