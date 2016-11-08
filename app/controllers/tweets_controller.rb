@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
   before_filter :authenticate_user!
+  before_action :set_tweet, only:[:show, :edit, :update]
 
   def index
     @tweets = Tweet.all
@@ -23,13 +24,29 @@ class TweetsController < ApplicationController
   end
 
   def show
-    @tweet = Tweet.find(params[:id])
+
   end
 
   def edit
+
+  end
+
+  def update
+    respond_to do |format|
+      if @tweet.update(tweet_params)
+        format.html { redirect_to @tweet,
+                                  notice: 'Your tweet has been updated.' }
+      else
+        format.html { render :edit}
+      end
+    end
   end
 
   private
+
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
+  end
 
   def tweet_params
     params.require(:tweet).permit(:message, :user_id)
