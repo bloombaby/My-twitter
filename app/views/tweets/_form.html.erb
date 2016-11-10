@@ -4,11 +4,11 @@
   <% if @tweet.errors.any? %>
      <div id="error_explanation">
      <h2>
-       <%= pluarlize (@tweet.errors.count "error") %> prohibited this tweet from being saved:
+       <%= pluralize(@tweet.errors.count, "error") %> prohibited this tweet from being saved:
      </h2>
 
      <ul>
-       <% @tweets.errors.full_messages.each do |error| %>
+       <% @tweet.errors.full_messages.each do |error| %>
        <li><%= error %></li>
        <% end %>
      </ul>
